@@ -504,7 +504,7 @@
             <div class="assistant-intro-card">
                 <span class="assistant-kicker">Recruiter AI Assistant</span>
                 <h2 class="section-title assistant-title">Ask About My Experience Instead of Scanning Every Section</h2>
-                <p class="assistant-intro">This assistant uses a Hugging Face model in the browser to match recruiter questions against my experience, skills, projects, certifications, and domain expertise. It now supports categorized prompts, a floating recruiter chat launcher, and an optional hosted Hugging Face answer mode for more polished responses.</p>
+                <p class="assistant-intro">This assistant downloads a small Hugging Face model directly in the browser and answers recruiter questions from my profile data. It is local-first, fast for hiring screens, and does not require a backend service.</p>
                 <div class="assistant-category-grid" id="assistantSuggestions">
                     <div class="assistant-category">
                         <h3>Frameworks and Platforms</h3>
@@ -537,18 +537,20 @@
                 <h3>Why This Helps Recruiters</h3>
                 <ul class="assistant-capability-list">
                     <li>Ask natural questions about frameworks, projects, domains, leadership, or AI-driven testing work.</li>
-                    <li>Use fast local semantic retrieval on GitHub Pages with no server dependency.</li>
-                    <li>Optionally switch to hosted Hugging Face generation by providing your own access token in the floating chat.</li>
+                    <li>Use local semantic retrieval on GitHub Pages with no backend dependency.</li>
+                    <li>Get concise recruiter-friendly answers without scanning the full page section by section.</li>
                     <li>Use the floating launcher so the assistant is always available while browsing the portfolio.</li>
                 </ul>
-                <p class="assistant-helper-note">Hosted mode is optional and token-based. If no token is saved, the assistant still works using local profile retrieval and ranking.</p>
+                <p class="assistant-helper-note">Model download happens on first load, then browser cache speeds up future sessions.</p>
                 <button type="button" class="assistant-launch-button" data-assistant-open>Open Floating Assistant</button>
             </div>
         </div>
     </section>
 
     <div class="assistant-floating-wrap">
-        <button type="button" class="assistant-launcher" id="assistantLauncher" aria-controls="assistantWidget" aria-expanded="false">AI Recruiter Assistant</button>
+        <button type="button" class="assistant-launcher" id="assistantLauncher" aria-controls="assistantWidget" aria-expanded="false" aria-label="Open recruiter assistant">
+            <span class="assistant-launcher-icon">AI</span>
+        </button>
 
         <div class="assistant-widget" id="assistantWidget" hidden>
             <div class="assistant-widget-header">
@@ -557,25 +559,9 @@
                     <p>Ask about frameworks, delivery impact, AI testing, or hiring fit.</p>
                 </div>
                 <div class="assistant-widget-actions">
-                    <span class="assistant-mode-badge" id="assistantModeBadge">Local mode</span>
+                    <span class="assistant-mode-badge" id="assistantModeBadge">Local model</span>
                     <button type="button" class="assistant-close" id="assistantClose" aria-label="Close assistant">Close</button>
                 </div>
-            </div>
-
-            <div class="assistant-settings-panel">
-                <div class="assistant-setting-row">
-                    <label for="assistantMode">Answer mode</label>
-                    <select id="assistantMode" class="assistant-select">
-                        <option value="local">Local semantic answer</option>
-                        <option value="live">Hosted Hugging Face answer</option>
-                    </select>
-                </div>
-                <div class="assistant-setting-row">
-                    <label for="assistantToken">Hugging Face token</label>
-                    <input type="password" id="assistantToken" class="assistant-token-input" placeholder="Optional: paste Hugging Face access token">
-                </div>
-                <button type="button" class="assistant-save-button" id="assistantSaveToken">Save Assistant Settings</button>
-                <p class="assistant-helper-note">Token is stored only in this browser using local storage. Without it, the assistant stays in local mode and still answers profile questions.</p>
             </div>
 
             <div class="assistant-chat-card assistant-widget-card">

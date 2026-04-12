@@ -1449,17 +1449,32 @@ textarea:focus-visible {
 }
 
 .assistant-launcher {
-    min-height: 56px;
-    padding: 14px 18px;
+    width: 62px;
+    height: 62px;
+    padding: 0;
     border-radius: 999px;
     border: 1px solid rgba(56, 189, 248, 0.2);
     background: linear-gradient(135deg, rgba(56, 189, 248, 0.94), rgba(14, 165, 233, 0.94));
     color: #082f49;
-    font-size: 14px;
-    font-weight: 800;
-    letter-spacing: 0.02em;
     cursor: pointer;
     box-shadow: 0 18px 36px rgba(14, 165, 233, 0.28);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.assistant-launcher-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(8, 47, 73, 0.14);
+    border: 1px solid rgba(8, 47, 73, 0.2);
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
 }
 
 .assistant-widget {
@@ -1526,36 +1541,6 @@ textarea:focus-visible {
     color: #cbd5e1;
     font-size: 13px;
     font-weight: 700;
-}
-
-.assistant-settings-panel {
-    display: grid;
-    gap: 12px;
-    padding: 16px 18px;
-    border-bottom: 1px solid rgba(56, 189, 248, 0.08);
-    background: rgba(15, 23, 42, 0.72);
-}
-
-.assistant-setting-row {
-    display: grid;
-    gap: 8px;
-}
-
-.assistant-setting-row label {
-    color: #cbd5e1;
-    font-size: 13px;
-    font-weight: 700;
-}
-
-.assistant-select,
-.assistant-token-input {
-    width: 100%;
-    padding: 12px 14px;
-    border-radius: 12px;
-    border: 1px solid rgba(56, 189, 248, 0.16);
-    background: rgba(203, 213, 225, 0.05);
-    color: #e2e8f0;
-    font-size: 14px;
 }
 
 .assistant-widget-card {
