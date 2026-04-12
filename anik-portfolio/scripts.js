@@ -176,8 +176,13 @@ function initNavigationSmoothing() {
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (!href || !href.startsWith('#')) {
+                return;
+            }
+
             e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
+            const targetId = href.substring(1);
             scrollToSection(targetId);
             
             // Close mobile menu if open
@@ -365,7 +370,13 @@ function updateActiveNavLink() {
     // Update active state on all nav links
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
-        const linkTarget = link.getAttribute('href').substring(1);
+        const href = link.getAttribute('href');
+        if (!href || !href.startsWith('#')) {
+            link.classList.remove('active');
+            return;
+        }
+
+        const linkTarget = href.substring(1);
         
         if (linkTarget === currentSection) {
             link.classList.add('active');

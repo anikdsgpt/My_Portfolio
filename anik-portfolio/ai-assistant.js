@@ -2,12 +2,13 @@ import { env, pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers
 
 env.allowLocalModels = false;
 env.useBrowserCache = true;
-
 env.remoteHost = 'https://huggingface.co';
-
 env.remotePathTemplate = '{model}/resolve/{revision}/';
 
 const EMBEDDING_MODEL = 'Xenova/all-MiniLM-L6-v2';
+const GENERATION_MODEL = 'google/flan-t5-large';
+const STORAGE_MODE_KEY = 'anik-assistant-mode';
+const STORAGE_TOKEN_KEY = 'anik-hf-token';
 
 const KNOWLEDGE_BASE = [
     {
@@ -60,28 +61,44 @@ const state = {
     embedder: null,
     knowledgeVectors: [],
     isReady: false,
-    isBusy: false
+    isBusy: false,
+    mode: 'local',
+    hfToken: '',
+    widgetOpen: false
 };
 
 const elements = {
+    launcher: document.getElementById('assistantLauncher'),
+    widget: document.getElementById('assistantWidget'),
+    openButtons: Array.from(document.querySelectorAll('[data-assistant-open]')),
+    closeButton: document.getElementById('assistantClose'),
     form: document.getElementById('assistantForm'),
     input: document.getElementById('assistantInput'),
     messages: document.getElementById('assistantMessages'),
     status: document.getElementById('assistantStatus'),
-    suggestions: document.getElementById('assistantSuggestions')
+    suggestions: document.getElementById('assistantSuggestions'),
+    modeSelect: document.getElementById('assistantMode'),
+    tokenInput: document.getElementById('assistantToken'),
+    saveButton: document.getElementById('assistantSaveToken'),
+    modeBadge: document.getElementById('assistantModeBadge')
 };
 
-if (elements.form && elements.input && elements.messages && elements.status) {
-    bootstrapAssistant().catch((error) => {
-        console.error('Recruiter assistant bootstrap failed:', error);
-        setStatus('error', 'Model failed to load');
-        appendBotMessage('The recruiter assistant could not load the Hugging Face model in this browser session. You can still use the rest of the portfolio and try refreshing the page.');
+if (elements.form && elements.input && elements.messages && elements.status && elements.launcher && elements.widget) {
+    initializeAssistant().catch((error) => {
+        console.error('Recruiter assistant initialization failed:', error);
+        setStatus('error', 'Model failed');
+        appendBotMessage('The recruiter assistant could not load its Hugging Face model in this browser session. Refresh and try again.');
     });
 }
 
-async function bootstrapAssistant() {
+async function initializeAssistant() {
+    restoreSettings();
+    bindFloatingControls();
+    bindSettingsControls();
     wireSuggestionClicks();
     bindForm();
+    updateModeBadge();
+    openWidget();
     setStatus('loading', 'Downloading model...');
 
     state.embedder = await pipeline('feature-extraction', EMBEDDING_MODEL, {
@@ -99,16 +116,73 @@ async function bootstrapAssistant() {
 
     state.isReady = true;
     setStatus('ready', 'Assistant ready');
-    appendBotMessage('Recruiter assistant is ready. Ask about experience, skills, AI testing work, domain background, projects, desktop automation, or leadership scope.');
+    appendBotMessage('Recruiter assistant is ready. Ask about experience, frameworks, desktop automation, AI-driven testing, leadership scope, projects, or hiring fit.');
 }
 
-function handleProgress(progress) {
-    if (!progress || typeof progress.progress !== 'number') {
-        return;
+function restoreSettings() {
+    state.mode = localStorage.getItem(STORAGE_MODE_KEY) || 'local';
+    state.hfToken = localStorage.getItem(STORAGE_TOKEN_KEY) || '';
+
+    if (elements.modeSelect) {
+        elements.modeSelect.value = state.mode;
     }
 
-    const percent = Math.max(0, Math.min(100, Math.round(progress.progress * 100)));
-    setStatus('loading', `Loading ${percent}%`);
+    if (elements.tokenInput) {
+        elements.tokenInput.value = state.hfToken;
+    }
+}
+
+function bindFloatingControls() {
+    elements.launcher.addEventListener('click', () => {
+        if (state.widgetOpen) {
+            closeWidget();
+        } else {
+            openWidget();
+        }
+    });
+
+    elements.openButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            openWidget();
+            elements.input.focus();
+        });
+    });
+
+    if (elements.closeButton) {
+        elements.closeButton.addEventListener('click', () => {
+            closeWidget();
+        });
+    }
+}
+
+function bindSettingsControls() {
+    if (elements.saveButton) {
+        elements.saveButton.addEventListener('click', () => {
+            state.mode = elements.modeSelect.value;
+            state.hfToken = elements.tokenInput.value.trim();
+            localStorage.setItem(STORAGE_MODE_KEY, state.mode);
+            if (state.hfToken) {
+                localStorage.setItem(STORAGE_TOKEN_KEY, state.hfToken);
+            } else {
+                localStorage.removeItem(STORAGE_TOKEN_KEY);
+            }
+            updateModeBadge();
+            appendBotMessage(
+                state.mode === 'live' && state.hfToken
+                    ? 'Hosted Hugging Face answer mode saved. I will now use retrieval plus live generation when you ask a question.'
+                    : 'Assistant settings saved. The assistant will continue in local semantic mode unless a Hugging Face token is provided.'
+            );
+        });
+    }
+
+    if (elements.modeSelect) {
+        elements.modeSelect.addEventListener('change', () => {
+            const pendingMode = elements.modeSelect.value;
+            if (pendingMode === 'live' && !elements.tokenInput.value.trim()) {
+                appendBotMessage('Hosted answer mode requires a Hugging Face access token. Save a token first or stay in local semantic mode.');
+            }
+        });
+    }
 }
 
 function bindForm() {
@@ -133,6 +207,7 @@ function wireSuggestionClicks() {
                 return;
             }
             const question = chip.textContent.trim();
+            openWidget();
             elements.input.value = question;
             await handleRecruiterQuestion(question);
         });
@@ -149,13 +224,14 @@ async function handleRecruiterQuestion(question) {
     setControlsDisabled(true);
     appendUserMessage(question);
     elements.input.value = '';
-    setStatus('loading', 'Thinking...');
+    setStatus('loading', state.mode === 'live' && state.hfToken ? 'Generating...' : 'Thinking...');
 
     try {
         const queryEmbedding = await createEmbedding(question);
         const rankedEntries = rankKnowledge(queryEmbedding).slice(0, 3);
-        const answer = buildAnswer(question, rankedEntries);
-        appendBotMessage(answer);
+        const localAnswer = buildLocalAnswer(question, rankedEntries);
+        const finalAnswer = await maybeGenerateHostedAnswer(question, rankedEntries, localAnswer);
+        appendBotMessage(finalAnswer);
         setStatus('ready', 'Assistant ready');
     } catch (error) {
         console.error('Recruiter assistant question failed:', error);
@@ -165,6 +241,82 @@ async function handleRecruiterQuestion(question) {
         state.isBusy = false;
         setControlsDisabled(false);
     }
+}
+
+async function maybeGenerateHostedAnswer(question, rankedEntries, localAnswer) {
+    if (state.mode !== 'live' || !state.hfToken) {
+        return localAnswer;
+    }
+
+    try {
+        const generated = await requestHostedAnswer(question, rankedEntries);
+        if (!generated) {
+            return localAnswer;
+        }
+        return generated;
+    } catch (error) {
+        console.error('Hosted Hugging Face generation failed, falling back to local answer:', error);
+        appendBotMessage('Hosted answer mode was unavailable for this request, so I used the local semantic answer instead.');
+        updateModeBadge('live unavailable');
+        return localAnswer;
+    }
+}
+
+async function requestHostedAnswer(question, rankedEntries) {
+    const contextBlock = rankedEntries
+        .map((entry, index) => `${index + 1}. ${entry.title}: ${entry.content}`)
+        .join('\n');
+
+    const prompt = [
+        'You are a recruiter assistant for Anik Dasgupta.',
+        'Answer using only the supplied profile context.',
+        'Be concise, factual, and recruiter-friendly.',
+        'If the question asks about fit, summarize strengths clearly.',
+        '',
+        `Question: ${question}`,
+        '',
+        'Profile context:',
+        contextBlock,
+        '',
+        'Answer:'
+    ].join('\n');
+
+    const response = await fetch(`https://router.huggingface.co/hf-inference/models/${GENERATION_MODEL}`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${state.hfToken}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            inputs: prompt,
+            parameters: {
+                max_new_tokens: 220,
+                temperature: 0.2,
+                return_full_text: false
+            }
+        })
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || `Hosted generation failed with status ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (Array.isArray(data) && data[0] && data[0].generated_text) {
+        return cleanHostedText(data[0].generated_text);
+    }
+
+    if (data && data.generated_text) {
+        return cleanHostedText(data.generated_text);
+    }
+
+    return '';
+}
+
+function cleanHostedText(text) {
+    return text.replace(/^Answer:\s*/i, '').trim();
 }
 
 async function createEmbedding(text) {
@@ -185,7 +337,7 @@ function rankKnowledge(queryEmbedding) {
         .sort((left, right) => right.score - left.score);
 }
 
-function buildAnswer(question, rankedEntries) {
+function buildLocalAnswer(question, rankedEntries) {
     const topEntry = rankedEntries[0];
     const supportingEntries = rankedEntries.slice(1);
 
@@ -216,6 +368,10 @@ function inferIntro(question, title) {
 
     if (normalized.includes('ai')) {
         return 'Here is the strongest AI-driven testing summary:';
+    }
+
+    if (normalized.includes('security') || normalized.includes('owasp') || normalized.includes('sast') || normalized.includes('sca')) {
+        return 'Here is the most relevant security-testing context:';
     }
 
     if (normalized.includes('why') || normalized.includes('fit') || normalized.includes('hire')) {
@@ -270,6 +426,15 @@ function appendMessage(text, modifierClass) {
     elements.messages.scrollTop = elements.messages.scrollHeight;
 }
 
+function handleProgress(progress) {
+    if (!progress || typeof progress.progress !== 'number') {
+        return;
+    }
+
+    const percent = Math.max(0, Math.min(100, Math.round(progress.progress * 100)));
+    setStatus('loading', `Loading ${percent}%`);
+}
+
 function setStatus(type, label) {
     elements.status.textContent = label;
     elements.status.className = 'assistant-status';
@@ -288,5 +453,41 @@ function setControlsDisabled(isDisabled) {
         elements.suggestions.querySelectorAll('.assistant-chip').forEach((chip) => {
             chip.disabled = isDisabled;
         });
+    }
+    if (elements.saveButton) {
+        elements.saveButton.disabled = isDisabled;
+    }
+}
+
+function openWidget() {
+    state.widgetOpen = true;
+    elements.widget.hidden = false;
+    elements.launcher.setAttribute('aria-expanded', 'true');
+    elements.launcher.textContent = 'Close AI Assistant';
+}
+
+function closeWidget() {
+    state.widgetOpen = false;
+    elements.widget.hidden = true;
+    elements.launcher.setAttribute('aria-expanded', 'false');
+    elements.launcher.textContent = 'AI Recruiter Assistant';
+}
+
+function updateModeBadge(overrideLabel) {
+    if (!elements.modeBadge) {
+        return;
+    }
+
+    if (overrideLabel) {
+        elements.modeBadge.textContent = overrideLabel;
+        return;
+    }
+
+    if (state.mode === 'live' && state.hfToken) {
+        elements.modeBadge.textContent = 'Hosted HF mode';
+    } else if (state.mode === 'live' && !state.hfToken) {
+        elements.modeBadge.textContent = 'Live mode needs token';
+    } else {
+        elements.modeBadge.textContent = 'Local mode';
     }
 }

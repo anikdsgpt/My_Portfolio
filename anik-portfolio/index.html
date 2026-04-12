@@ -504,20 +504,85 @@
             <div class="assistant-intro-card">
                 <span class="assistant-kicker">Recruiter AI Assistant</span>
                 <h2 class="section-title assistant-title">Ask About My Experience Instead of Scanning Every Section</h2>
-                <p class="assistant-intro">This assistant uses a Hugging Face model in the browser to match recruiter questions against my experience, skills, projects, certifications, and domain expertise. It is built for fast hiring-screen conversations like “Does he have Playwright experience?” or “What kind of AI testing work has he done?”</p>
-                <div class="assistant-suggestions" id="assistantSuggestions">
-                    <button type="button" class="assistant-chip">What automation frameworks does Anik use?</button>
-                    <button type="button" class="assistant-chip">Summarize his Hyland experience.</button>
-                    <button type="button" class="assistant-chip">Does he have desktop automation expertise?</button>
-                    <button type="button" class="assistant-chip">What makes him strong for senior SDET roles?</button>
+                <p class="assistant-intro">This assistant uses a Hugging Face model in the browser to match recruiter questions against my experience, skills, projects, certifications, and domain expertise. It now supports categorized prompts, a floating recruiter chat launcher, and an optional hosted Hugging Face answer mode for more polished responses.</p>
+                <div class="assistant-category-grid" id="assistantSuggestions">
+                    <div class="assistant-category">
+                        <h3>Frameworks and Platforms</h3>
+                        <div class="assistant-suggestions">
+                            <button type="button" class="assistant-chip">What automation frameworks does Anik use?</button>
+                            <button type="button" class="assistant-chip">Does he have Playwright experience?</button>
+                            <button type="button" class="assistant-chip">Does he have desktop automation expertise?</button>
+                        </div>
+                    </div>
+                    <div class="assistant-category">
+                        <h3>Experience and Leadership</h3>
+                        <div class="assistant-suggestions">
+                            <button type="button" class="assistant-chip">Summarize his Hyland experience.</button>
+                            <button type="button" class="assistant-chip">How has he mentored or led QA work?</button>
+                            <button type="button" class="assistant-chip">What makes him strong for senior SDET roles?</button>
+                        </div>
+                    </div>
+                    <div class="assistant-category">
+                        <h3>AI, Security, and Delivery</h3>
+                        <div class="assistant-suggestions">
+                            <button type="button" class="assistant-chip">What kind of AI-driven testing work has he done?</button>
+                            <button type="button" class="assistant-chip">What security testing exposure does he have?</button>
+                            <button type="button" class="assistant-chip">How strong is he in Jenkins and CI/CD?</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="assistant-chat-card">
+            <div class="assistant-overview-card">
+                <h3>Why This Helps Recruiters</h3>
+                <ul class="assistant-capability-list">
+                    <li>Ask natural questions about frameworks, projects, domains, leadership, or AI-driven testing work.</li>
+                    <li>Use fast local semantic retrieval on GitHub Pages with no server dependency.</li>
+                    <li>Optionally switch to hosted Hugging Face generation by providing your own access token in the floating chat.</li>
+                    <li>Use the floating launcher so the assistant is always available while browsing the portfolio.</li>
+                </ul>
+                <p class="assistant-helper-note">Hosted mode is optional and token-based. If no token is saved, the assistant still works using local profile retrieval and ranking.</p>
+                <button type="button" class="assistant-launch-button" data-assistant-open>Open Floating Assistant</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="assistant-floating-wrap">
+        <button type="button" class="assistant-launcher" id="assistantLauncher" aria-controls="assistantWidget" aria-expanded="false">AI Recruiter Assistant</button>
+
+        <div class="assistant-widget" id="assistantWidget" hidden>
+            <div class="assistant-widget-header">
+                <div>
+                    <h3>Recruiter Assistant</h3>
+                    <p>Ask about frameworks, delivery impact, AI testing, or hiring fit.</p>
+                </div>
+                <div class="assistant-widget-actions">
+                    <span class="assistant-mode-badge" id="assistantModeBadge">Local mode</span>
+                    <button type="button" class="assistant-close" id="assistantClose" aria-label="Close assistant">Close</button>
+                </div>
+            </div>
+
+            <div class="assistant-settings-panel">
+                <div class="assistant-setting-row">
+                    <label for="assistantMode">Answer mode</label>
+                    <select id="assistantMode" class="assistant-select">
+                        <option value="local">Local semantic answer</option>
+                        <option value="live">Hosted Hugging Face answer</option>
+                    </select>
+                </div>
+                <div class="assistant-setting-row">
+                    <label for="assistantToken">Hugging Face token</label>
+                    <input type="password" id="assistantToken" class="assistant-token-input" placeholder="Optional: paste Hugging Face access token">
+                </div>
+                <button type="button" class="assistant-save-button" id="assistantSaveToken">Save Assistant Settings</button>
+                <p class="assistant-helper-note">Token is stored only in this browser using local storage. Without it, the assistant stays in local mode and still answers profile questions.</p>
+            </div>
+
+            <div class="assistant-chat-card assistant-widget-card">
                 <div class="assistant-chat-header">
                     <div>
                         <h3>Chat With Recruiter Assistant</h3>
-                        <p>First load downloads a compact Hugging Face embedding model for semantic search.</p>
+                        <p>First load downloads a compact Hugging Face embedding model for local semantic search.</p>
                     </div>
                     <span class="assistant-status" id="assistantStatus">Loading model...</span>
                 </div>
@@ -537,7 +602,7 @@
                 </form>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
