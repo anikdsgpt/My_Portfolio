@@ -370,6 +370,20 @@ function setStatus(type, label) {
     if (type) {
         elements.status.classList.add(type);
     }
+
+    updateLauncherState(type);
+}
+
+function updateLauncherState(type) {
+    if (!elements.launcher) {
+        return;
+    }
+
+    elements.launcher.classList.remove('assistant-launcher-ready');
+
+    if (type === 'ready' && !state.widgetOpen) {
+        elements.launcher.classList.add('assistant-launcher-ready');
+    }
 }
 
 function setModeBadge(label) {
@@ -405,10 +419,17 @@ function openWidget() {
     state.widgetOpen = true;
     elements.widget.hidden = false;
     elements.launcher.setAttribute('aria-expanded', 'true');
+    elements.launcher.classList.add('assistant-launcher-open');
+    elements.launcher.classList.remove('assistant-launcher-ready');
 }
 
 function closeWidget() {
     state.widgetOpen = false;
     elements.widget.hidden = true;
     elements.launcher.setAttribute('aria-expanded', 'false');
+    elements.launcher.classList.remove('assistant-launcher-open');
+
+    if (state.isReady) {
+        elements.launcher.classList.add('assistant-launcher-ready');
+    }
 }
