@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anik Dasgupta Resume | Senior SDET</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .resume-page {
+            min-height: 100vh;
+            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.08), transparent 40%), linear-gradient(180deg, #0b1120 0%, #111827 100%);
+            padding: 48px 20px 72px;
+        }
+
+        .resume-shell {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .resume-toolbar {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .resume-toolbar-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .resume-card {
+            background: rgba(15, 23, 42, 0.82);
+            border: 1px solid rgba(56, 189, 248, 0.16);
+            border-radius: 20px;
+            box-shadow: 0 24px 70px rgba(2, 6, 23, 0.45);
+            overflow: hidden;
+        }
+
+        .resume-header {
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(8, 47, 73, 0.95), rgba(30, 41, 59, 0.95));
+            border-bottom: 1px solid rgba(56, 189, 248, 0.16);
+        }
+
+        .resume-name {
+            font-size: clamp(34px, 5vw, 52px);
+            line-height: 1.05;
+            color: #f8fafc;
+            margin-bottom: 12px;
+            letter-spacing: -1.6px;
+        }
+
+        .resume-role {
+            font-size: clamp(18px, 2.2vw, 24px);
+            color: #7dd3fc;
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+
+        .resume-summary {
+            max-width: 820px;
+            color: #dbeafe;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .resume-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .resume-meta-item {
+            background: rgba(15, 23, 42, 0.42);
+            border: 1px solid rgba(125, 211, 252, 0.16);
+            border-radius: 12px;
+            padding: 14px 16px;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .resume-meta-item strong {
+            color: #7dd3fc;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 12px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .resume-content {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: minmax(0, 0.92fr) minmax(280px, 0.58fr);
+            gap: 32px;
+        }
+
+        .resume-column {
+            display: grid;
+            gap: 28px;
+        }
+
+        .resume-block {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(56, 189, 248, 0.12);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .resume-block h2 {
+            color: #38bdf8;
+            font-size: 20px;
+            margin-bottom: 18px;
+            letter-spacing: -0.02em;
+        }
+
+        .resume-list,
+        .resume-compact-list {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .resume-list li,
+        .resume-compact-list li {
+            color: #cbd5e1;
+            font-size: 15px;
+            line-height: 1.75;
+            position: relative;
+            padding-left: 18px;
+        }
+
+        .resume-list li::before,
+        .resume-compact-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.45);
+        }
+
+        .resume-job {
+            display: grid;
+            gap: 14px;
+            padding-bottom: 18px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+        }
+
+        .resume-job:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .resume-job-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .resume-job-title {
+            color: #f8fafc;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .resume-job-company {
+            color: #7dd3fc;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .resume-job-dates {
+            color: #94a3b8;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .resume-skill-group {
+            display: grid;
+            gap: 10px;
+        }
+
+        .resume-skill-group + .resume-skill-group {
+            margin-top: 16px;
+        }
+
+        .resume-skill-group h3 {
+            color: #f8fafc;
+            font-size: 15px;
+        }
+
+        .resume-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .resume-tag {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.24);
+            color: #dbeafe;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .resume-note {
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .resume-actions-print {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 12px 24px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+            color: #0f172a;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        @media (max-width: 900px) {
+            .resume-content {
+                grid-template-columns: 1fr;
+            }
+
+            .resume-header,
+            .resume-content {
+                padding: 28px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .resume-page {
+                padding: 24px 12px 48px;
+            }
+
+            .resume-header,
+            .resume-content {
+                padding: 20px;
+            }
+
+            .resume-toolbar {
+                align-items: stretch;
+            }
+
+            .resume-toolbar-links,
+            .resume-actions-print,
+            .resume-toolbar .secondary-button {
+                width: 100%;
+            }
+
+            .resume-job-header {
+                flex-direction: column;
+            }
+        }
+
+        @media print {
+            body {
+                background: #ffffff;
+                color: #111827;
+            }
+
+            .resume-page {
+                background: #ffffff;
+                padding: 0;
+            }
+
+            .resume-toolbar {
+                display: none;
+            }
+
+            .resume-card,
+            .resume-block,
+            .resume-header {
+                background: #ffffff;
+                color: #111827;
+                box-shadow: none;
+                border-color: #d1d5db;
+            }
+
+            .resume-name,
+            .resume-job-title,
+            .resume-block h2,
+            .resume-skill-group h3 {
+                color: #111827;
+            }
+
+            .resume-role,
+            .resume-job-company,
+            .resume-meta-item strong {
+                color: #0369a1;
+            }
+
+            .resume-summary,
+            .resume-meta-item,
+            .resume-list li,
+            .resume-compact-list li,
+            .resume-job-dates,
+            .resume-note,
+            .resume-tag {
+                color: #1f2937;
+            }
+
+            .resume-tag {
+                background: #eff6ff;
+                border-color: #bfdbfe;
+            }
+
+            .resume-list li::before,
+            .resume-compact-list li::before {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="resume-page">
+        <div class="resume-shell">
+            <div class="resume-toolbar">
+                <div class="resume-toolbar-links">
+                    <a href="index.html" class="secondary-button">Back to Portfolio</a>
+                </div>
+                <button class="resume-actions-print" onclick="window.print()">Print / Save as PDF</button>
+            </div>
+
+            <article class="resume-card">
+                <header class="resume-header">
+                    <h1 class="resume-name">Anik Dasgupta</h1>
+                    <p class="resume-role">Senior SDET | QA Automation Engineer | AI-Driven Quality Engineering</p>
+                    <p class="resume-summary">Results-driven Senior QA Automation Engineer with 9 years of experience building scalable automation frameworks across Web, API, Mobile, and Desktop applications in healthcare and finance domains. Strong hands-on expertise in Python, Selenium, Playwright, Pytest, Pytest-BDD, REST API automation, and CI/CD-integrated quality engineering using Jenkins and Git. Experienced in designing reusable frameworks, embedding SAST and SCA practices into release workflows, and extending automation into legacy Windows application ecosystems. Brings an automation-first mindset with growing strength in AI-driven testing initiatives, documentation parsing, and workflow optimization for modern SDET teams.</p>
+                    <div class="resume-meta">
+                        <div class="resume-meta-item"><strong>Email</strong>anikdsgpt@outlook.com</div>
+                        <div class="resume-meta-item"><strong>Phone</strong>+91 89025 53975</div>
+                        <div class="resume-meta-item"><strong>Location</strong>34 B.B Street, PIN - 712232</div>
+                        <div class="resume-meta-item"><strong>GitHub</strong>github.com/anikdsgpt</div>
+                    </div>
+                </header>
+
+                <section class="resume-content">
+                    <div class="resume-column">
+                        <section class="resume-block">
+                            <h2>Experience</h2>
+
+                            <div class="resume-job">
+                                <div class="resume-job-header">
+                                    <div>
+                                        <div class="resume-job-title">Test Engineer 3</div>
+                                        <div class="resume-job-company">Hyland Software</div>
+                                    </div>
+                                    <div class="resume-job-dates">Jun 2022 - Present</div>
+                                </div>
+                                <ul class="resume-list">
+                                    <li>Designed and scaled a CI-integrated automation framework supporting Web, API, and legacy Windows desktop applications, improving consistency across mixed-technology release validation.</li>
+                                    <li>Led UI and API automation using Selenium, Playwright, Pytest, and Postman, accelerating regression execution and improving repeatability for enterprise product teams.</li>
+                                    <li>Built reusable Pytest modules for Windows workflows and UI validations, extending automation into desktop-heavy product areas that typically depended on manual checks.</li>
+                                    <li>Enhanced Jenkins-based CI workflows for cross-platform desktop regression execution, improving execution reliability and release readiness visibility.</li>
+                                    <li>Embedded SAST and SCA validation into quality workflows, helping teams surface security risks earlier and strengthen shift-left testing maturity.</li>
+                                    <li>Mentored junior QA engineers, led test planning and defect triage, and contributed to AI-enhanced utilities for automation optimization and documentation parsing.</li>
+                                </ul>
+                            </div>
+
+                            <div class="resume-job">
+                                <div class="resume-job-header">
+                                    <div>
+                                        <div class="resume-job-title">Quality Assurance Engineer</div>
+                                        <div class="resume-job-company">OpenText Technologies</div>
+                                    </div>
+                                    <div class="resume-job-dates">Mar 2021 - Jun 2022</div>
+                                </div>
+                                <ul class="resume-list">
+                                    <li>Automated regression suites for BPM, Case, and Decision products, increasing dependable coverage across high-value business workflows.</li>
+                                    <li>Strengthened cross-browser, API, and database validation coverage to improve defect detection across integrated enterprise product modules.</li>
+                                    <li>Improved CI/CD execution readiness and test data strategies, reducing release friction and making automation runs more predictable.</li>
+                                </ul>
+                            </div>
+
+                            <div class="resume-job">
+                                <div class="resume-job-header">
+                                    <div>
+                                        <div class="resume-job-title">Associate</div>
+                                        <div class="resume-job-company">Cognizant Technology Solutions</div>
+                                    </div>
+                                    <div class="resume-job-dates">Dec 2016 - Mar 2021</div>
+                                </div>
+                                <ul class="resume-list">
+                                    <li>Built and maintained automation suites using Selenium Grid for banking and lending systems, improving multi-browser and multi-platform validation scale.</li>
+                                    <li>Enhanced BDD automation frameworks with TestNG and Cucumber, making enterprise workflow automation easier to extend and maintain.</li>
+                                    <li>Automated hybrid browser and Windows desktop operations using AutoIT with Selenium, reducing manual effort around secure login and popup-driven workflows.</li>
+                                    <li>Developed scripts to handle browser dialogs and system popups, stabilizing automation for security-sensitive steps that commonly caused flaky execution.</li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <section class="resume-block">
+                            <h2>Projects</h2>
+                            <ul class="resume-list">
+                                <li><strong>Unified Web, API, and Desktop Automation Framework:</strong> Built a reusable Python-based automation solution spanning browser, API, and Windows desktop workflows using Selenium, Playwright, Pytest, Pywinauto, and Pyautogui.</li>
+                                <li><strong>BPM Regression Modernization Initiative:</strong> Automated critical regression scenarios for BPM, Case, and Decision platforms with integrated browser, API, and backend checks.</li>
+                                <li><strong>Hybrid Banking Workflow Automation:</strong> Developed hybrid UI automation for lending and banking applications using Selenium Grid, TestNG, Cucumber, and AutoIT.</li>
+                            </ul>
+                        </section>
+
+                        <section class="resume-block">
+                            <h2>AI-Driven Testing Initiatives</h2>
+                            <ul class="resume-list">
+                                <li>Contributed to AI-assisted utilities that improved documentation parsing and extracted more actionable inputs for quality planning.</li>
+                                <li>Applied AI-driven thinking to optimize test selection and reduce manual effort in understanding large workflow-heavy systems.</li>
+                                <li>Positioned AI as a productivity amplifier for QA engineering by focusing on analysis acceleration, stronger prioritization, and better automation support.</li>
+                            </ul>
+                        </section>
+                    </div>
+
+                    <aside class="resume-column">
+                        <section class="resume-block">
+                            <h2>Skills</h2>
+
+                            <div class="resume-skill-group">
+                                <h3>Automation</h3>
+                                <div class="resume-tags">
+                                    <span class="resume-tag">Selenium</span>
+                                    <span class="resume-tag">Playwright</span>
+                                    <span class="resume-tag">Pytest</span>
+                                    <span class="resume-tag">Pytest-BDD</span>
+                                    <span class="resume-tag">Appium</span>
+                                    <span class="resume-tag">Allure</span>
+                                </div>
+                            </div>
+
+                            <div class="resume-skill-group">
+                                <h3>Languages</h3>
+                                <div class="resume-tags">
+                                    <span class="resume-tag">Python</span>
+                                    <span class="resume-tag">Java</span>
+                                    <span class="resume-tag">SQL</span>
+                                </div>
+                            </div>
+
+                            <div class="resume-skill-group">
+                                <h3>API Testing</h3>
+                                <div class="resume-tags">
+                                    <span class="resume-tag">REST API</span>
+                                    <span class="resume-tag">Postman</span>
+                                    <span class="resume-tag">DB Validation</span>
+                                </div>
+                            </div>
+
+                            <div class="resume-skill-group">
+                                <h3>DevOps</h3>
+                                <div class="resume-tags">
+                                    <span class="resume-tag">Jenkins</span>
+                                    <span class="resume-tag">Git</span>
+                                    <span class="resume-tag">Bitbucket</span>
+                                    <span class="resume-tag">Docker</span>
+                                </div>
+                            </div>
+
+                            <div class="resume-skill-group">
+                                <h3>Security</h3>
+                                <div class="resume-tags">
+                                    <span class="resume-tag">SAST</span>
+                                    <span class="resume-tag">SCA</span>
+                                    <span class="resume-tag">OWASP</span>
+                                </div>
+                            </div>
+
+                            <div class="resume-skill-group">
+                                <h3>Desktop Automation</h3>
+                                <div class="resume-tags">
+                                    <span class="resume-tag">Pywinauto</span>
+                                    <span class="resume-tag">Pyautogui</span>
+                                    <span class="resume-tag">AutoIT</span>
+                                </div>
+                            </div>
+
+                            <div class="resume-skill-group">
+                                <h3>AI / ML</h3>
+                                <div class="resume-tags">
+                                    <span class="resume-tag">LLM Utilities</span>
+                                    <span class="resume-tag">NLP Parsing</span>
+                                    <span class="resume-tag">Test Optimization</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="resume-block">
+                            <h2>Education</h2>
+                            <ul class="resume-compact-list">
+                                <li><strong>Post Graduate Program in Artificial Intelligence and Machine Learning</strong><br>Great Lakes Executive Learning and The University of Texas at Austin<br>Grade: Excellent</li>
+                                <li><strong>B.Tech in Electrical Engineering</strong><br>MAKAUT<br>DGPA: 8.97</li>
+                                <li><strong>Higher Secondary</strong><br>Khalsa Model Senior Secondary School<br>71.6%</li>
+                                <li><strong>Secondary</strong><br>Kalyani Public School<br>CGPA: 9.2</li>
+                            </ul>
+                        </section>
+
+                        <section class="resume-block">
+                            <h2>Certifications</h2>
+                            <ul class="resume-compact-list">
+                                <li><strong>Programming, Data Structures and Algorithms Using Python</strong><br>NPTEL<br>Credential ID: NPTEL23CS95S3601090610027363</li>
+                            </ul>
+                        </section>
+
+                        <section class="resume-block">
+                            <h2>Awards</h2>
+                            <ul class="resume-compact-list">
+                                <li>Cognizant Pillar of the Month - March 2019</li>
+                                <li>JIS Samman Award 2021 for academic excellence</li>
+                            </ul>
+                        </section>
+
+                        <section class="resume-block">
+                            <h2>Resume Notes</h2>
+                            <p class="resume-note">Use the print action to save this page as PDF from the browser. The content is structured to remain ATS-friendly while still presenting well as a recruiter-facing web resume.</p>
+                        </section>
+                    </aside>
+                </section>
+            </article>
+        </div>
+    </main>
+</body>
+</html>

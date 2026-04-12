@@ -283,6 +283,13 @@ section {
     max-width: 760px;
 }
 
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+}
+
 .hero-highlight {
     display: inline-flex;
     align-items: center;
@@ -357,6 +364,28 @@ section {
 .cta-button:hover::before {
     width: 300px;
     height: 300px;
+}
+
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 14px 28px;
+    border-radius: 8px;
+    border: 1px solid rgba(56, 189, 248, 0.38);
+    background: rgba(15, 23, 42, 0.58);
+    color: #dbeafe;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.secondary-button:hover {
+    transform: translateY(-3px);
+    border-color: rgba(56, 189, 248, 0.75);
+    box-shadow: 0 12px 28px rgba(8, 47, 73, 0.35);
 }
 
 /* Section Titles */
@@ -1353,6 +1382,10 @@ textarea:focus-visible {
         margin: 0 auto 20px;
     }
 
+    .hero-actions {
+        justify-content: center;
+    }
+
     .hero-profile-image {
         width: min(240px, 75vw);
     }
@@ -1567,6 +1600,12 @@ textarea:focus-visible {
     }
 
     .cta-button {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+
+    .secondary-button {
+        width: 100%;
         padding: 12px 24px;
         font-size: 14px;
     }
