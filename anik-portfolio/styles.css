@@ -1286,6 +1286,229 @@ textarea:focus-visible {
     box-shadow: none;
 }
 
+/* Recruiter AI Assistant */
+.assistant-section {
+    padding: 100px 20px;
+    background: linear-gradient(180deg, rgba(15, 20, 25, 0.72) 0%, rgba(8, 15, 32, 0.92) 100%);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.05);
+}
+
+.assistant-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+    gap: 28px;
+    align-items: start;
+}
+
+.assistant-intro-card,
+.assistant-chat-card {
+    background: rgba(15, 23, 42, 0.58);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(56, 189, 248, 0.12);
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 18px 44px rgba(2, 6, 23, 0.28);
+}
+
+.assistant-kicker {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    color: #bae6fd;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.assistant-title {
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+.assistant-title::after {
+    left: 0;
+    transform: none;
+}
+
+.assistant-intro {
+    color: #cbd5e1;
+    font-size: 16px;
+    line-height: 1.85;
+    margin-bottom: 26px;
+}
+
+.assistant-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.assistant-chip {
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(56, 189, 248, 0.24);
+    background: rgba(56, 189, 248, 0.08);
+    color: #dbeafe;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.assistant-chip:hover {
+    transform: translateY(-2px);
+    border-color: rgba(56, 189, 248, 0.5);
+    background: rgba(56, 189, 248, 0.14);
+}
+
+.assistant-chat-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: start;
+    margin-bottom: 18px;
+}
+
+.assistant-chat-header h3 {
+    color: #38bdf8;
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+.assistant-chat-header p {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.assistant-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.12);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    color: #cbd5e1;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.assistant-status.ready {
+    background: rgba(34, 197, 94, 0.12);
+    border-color: rgba(34, 197, 94, 0.2);
+    color: #86efac;
+}
+
+.assistant-status.loading {
+    background: rgba(56, 189, 248, 0.12);
+    border-color: rgba(56, 189, 248, 0.2);
+    color: #7dd3fc;
+}
+
+.assistant-status.error {
+    background: rgba(248, 113, 113, 0.12);
+    border-color: rgba(248, 113, 113, 0.2);
+    color: #fca5a5;
+}
+
+.assistant-messages {
+    min-height: 340px;
+    max-height: 460px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-right: 4px;
+    margin-bottom: 18px;
+}
+
+.assistant-message {
+    max-width: 92%;
+    padding: 14px 16px;
+    border-radius: 16px;
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+.assistant-message p + p {
+    margin-top: 10px;
+}
+
+.assistant-message-user {
+    align-self: flex-end;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(14, 165, 233, 0.18));
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    color: #e0f2fe;
+}
+
+.assistant-message-bot {
+    align-self: flex-start;
+    background: rgba(30, 41, 59, 0.75);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    color: #dbeafe;
+}
+
+.assistant-form {
+    display: grid;
+    gap: 10px;
+}
+
+.assistant-label {
+    color: #cbd5e1;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.assistant-input-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+}
+
+.assistant-input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(56, 189, 248, 0.18);
+    background: rgba(203, 213, 225, 0.04);
+    color: #e2e8f0;
+    font-size: 15px;
+}
+
+.assistant-input::placeholder {
+    color: rgba(203, 213, 225, 0.42);
+}
+
+.assistant-input:focus {
+    outline: none;
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.14);
+}
+
+.assistant-send {
+    padding: 14px 20px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+    color: #0f172a;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.assistant-send:disabled,
+.assistant-chip:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
 /* Footer */
 .footer {
     background: linear-gradient(180deg, rgba(15, 20, 25, 0.8) 0%, rgba(10, 14, 21, 1) 100%);
@@ -1502,6 +1725,18 @@ textarea:focus-visible {
     .contact-wrapper {
         grid-template-columns: 1fr;
         gap: 30px;
+    }
+
+    .assistant-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .assistant-chat-header {
+        flex-direction: column;
+    }
+
+    .assistant-input-row {
+        grid-template-columns: 1fr;
     }
 
     .form-button {

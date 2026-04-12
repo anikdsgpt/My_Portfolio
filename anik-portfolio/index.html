@@ -36,6 +36,7 @@
                     <li><a href="#skills" class="nav-link">Skills</a></li>
                     <li><a href="#projects" class="nav-link">Projects</a></li>
                     <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#assistant" class="nav-link">AI Assistant</a></li>
                     <li><a href="resume.html" class="nav-link">Resume</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -498,6 +499,46 @@
         </div>
     </section>
 
+    <section id="assistant" class="assistant-section">
+        <div class="container assistant-shell">
+            <div class="assistant-intro-card">
+                <span class="assistant-kicker">Recruiter AI Assistant</span>
+                <h2 class="section-title assistant-title">Ask About My Experience Instead of Scanning Every Section</h2>
+                <p class="assistant-intro">This assistant uses a Hugging Face model in the browser to match recruiter questions against my experience, skills, projects, certifications, and domain expertise. It is built for fast hiring-screen conversations like “Does he have Playwright experience?” or “What kind of AI testing work has he done?”</p>
+                <div class="assistant-suggestions" id="assistantSuggestions">
+                    <button type="button" class="assistant-chip">What automation frameworks does Anik use?</button>
+                    <button type="button" class="assistant-chip">Summarize his Hyland experience.</button>
+                    <button type="button" class="assistant-chip">Does he have desktop automation expertise?</button>
+                    <button type="button" class="assistant-chip">What makes him strong for senior SDET roles?</button>
+                </div>
+            </div>
+
+            <div class="assistant-chat-card">
+                <div class="assistant-chat-header">
+                    <div>
+                        <h3>Chat With Recruiter Assistant</h3>
+                        <p>First load downloads a compact Hugging Face embedding model for semantic search.</p>
+                    </div>
+                    <span class="assistant-status" id="assistantStatus">Loading model...</span>
+                </div>
+
+                <div class="assistant-messages" id="assistantMessages" aria-live="polite">
+                    <article class="assistant-message assistant-message-bot">
+                        <p>I can answer questions about Anik’s QA automation background, AI-driven testing work, Playwright and Selenium depth, desktop automation, domain experience, leadership, and project highlights.</p>
+                    </article>
+                </div>
+
+                <form class="assistant-form" id="assistantForm">
+                    <label class="assistant-label" for="assistantInput">Ask a recruiter-style question</label>
+                    <div class="assistant-input-row">
+                        <input type="text" id="assistantInput" class="assistant-input" placeholder="Example: What experience does he have with Python and CI/CD?" maxlength="220" required>
+                        <button type="submit" class="assistant-send">Ask</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -564,7 +605,7 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="scripts.js"></script>
+    <script type="module" src="ai-assistant.js"></script>
 </body>
 </html>
