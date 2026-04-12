@@ -227,6 +227,13 @@ async function handleRecruiterQuestion(question) {
     setStatus('loading', state.mode === 'live' && state.hfToken ? 'Generating...' : 'Thinking...');
 
     try {
+        const directAnswer = getDirectAnswer(question);
+        if (directAnswer) {
+            appendBotMessage(directAnswer);
+            setStatus('ready', 'Assistant ready');
+            return;
+        }
+
         const queryEmbedding = await createEmbedding(question);
         const rankedEntries = rankKnowledge(queryEmbedding).slice(0, 3);
         const localAnswer = buildLocalAnswer(question, rankedEntries);
@@ -383,6 +390,84 @@ function inferIntro(question, title) {
     }
 
     return `Best match from ${title}:`;
+}
+
+function getDirectAnswer(question) {
+    const normalized = normalizeQuestion(question);
+
+    if (!normalized) {
+        return '';
+    }
+
+    if (
+        normalized === 'name' ||
+        normalized === 'full name' ||
+        normalized === 'what is your name' ||
+        normalized === 'what is his name' ||
+        normalized === 'who is this' ||
+        normalized === 'who is he'
+    ) {
+        return 'His name is Anik Dasgupta.';
+    }
+
+    if (
+        normalized.includes('email') ||
+        normalized.includes('mail id') ||
+        normalized.includes('email address')
+    ) {
+        return 'You can reach Anik at anikdsgpt@outlook.com.';
+    }
+
+    if (
+        normalized.includes('phone') ||
+        normalized.includes('mobile') ||
+        normalized.includes('contact number') ||
+        normalized.includes('number')
+    ) {
+        return 'Anik’s phone number is +91 89025 53975.';
+    }
+
+    if (
+        normalized.includes('location') ||
+        normalized.includes('where is he based') ||
+        normalized.includes('where is he located') ||
+        normalized.includes('where does he live')
+    ) {
+        return 'Anik is based at 34 B.B Street, PIN - 712232, India.';
+    }
+
+    if (
+        normalized.includes('current role') ||
+        normalized.includes('current position') ||
+        normalized.includes('what does he do now')
+    ) {
+        return 'Anik currently works as Test Engineer 3 at Hyland Software and is positioned for Senior SDET and QA Automation Engineer roles.';
+    }
+
+    if (
+        normalized.includes('years of experience') ||
+        normalized === 'experience' ||
+        normalized.includes('how many years')
+    ) {
+        return 'Anik has 9 years of experience in QA automation across web, API, mobile, and desktop testing.';
+    }
+
+    if (
+        normalized.includes('resume') ||
+        normalized.includes('cv')
+    ) {
+        return 'You can view the recruiter-facing resume page from the Resume link in the navigation or at anik-portfolio/resume.html on the site.';
+    }
+
+    return '';
+}
+
+function normalizeQuestion(question) {
+    return question
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
 }
 
 function sanitizeSentenceBlock(text) {
