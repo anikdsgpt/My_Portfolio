@@ -36,7 +36,6 @@
                     <li><a href="#skills" class="nav-link">Skills</a></li>
                     <li><a href="#projects" class="nav-link">Projects</a></li>
                     <li><a href="#experience" class="nav-link">Experience</a></li>
-                    <li><a href="#assistant" class="nav-link">AI Assistant</a></li>
                     <li><a href="resume.html" class="nav-link">Resume</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -499,97 +498,6 @@
         </div>
     </section>
 
-    <section id="assistant" class="assistant-section">
-        <div class="container assistant-shell">
-            <div class="assistant-intro-card">
-                <span class="assistant-kicker">Recruiter AI Assistant</span>
-                <h2 class="section-title assistant-title">Ask About My Experience Instead of Scanning Every Section</h2>
-                <p class="assistant-intro">This assistant downloads a small Hugging Face model directly in the browser and answers recruiter questions from my profile data. It is local-first, fast for hiring screens, and does not require a backend service.</p>
-                <div class="assistant-category-grid" id="assistantSuggestions">
-                    <div class="assistant-category">
-                        <h3>Frameworks and Platforms</h3>
-                        <div class="assistant-suggestions">
-                            <button type="button" class="assistant-chip">What automation frameworks does Anik use?</button>
-                            <button type="button" class="assistant-chip">Does he have Playwright experience?</button>
-                            <button type="button" class="assistant-chip">Does he have desktop automation expertise?</button>
-                        </div>
-                    </div>
-                    <div class="assistant-category">
-                        <h3>Experience and Leadership</h3>
-                        <div class="assistant-suggestions">
-                            <button type="button" class="assistant-chip">Summarize his Hyland experience.</button>
-                            <button type="button" class="assistant-chip">How has he mentored or led QA work?</button>
-                            <button type="button" class="assistant-chip">What makes him strong for senior SDET roles?</button>
-                        </div>
-                    </div>
-                    <div class="assistant-category">
-                        <h3>AI, Security, and Delivery</h3>
-                        <div class="assistant-suggestions">
-                            <button type="button" class="assistant-chip">What kind of AI-driven testing work has he done?</button>
-                            <button type="button" class="assistant-chip">What security testing exposure does he have?</button>
-                            <button type="button" class="assistant-chip">How strong is he in Jenkins and CI/CD?</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="assistant-overview-card">
-                <h3>Why This Helps Recruiters</h3>
-                <ul class="assistant-capability-list">
-                    <li>Ask natural questions about frameworks, projects, domains, leadership, or AI-driven testing work.</li>
-                    <li>Use local semantic retrieval on GitHub Pages with no backend dependency.</li>
-                    <li>Get concise recruiter-friendly answers without scanning the full page section by section.</li>
-                    <li>Use the floating launcher so the assistant is always available while browsing the portfolio.</li>
-                </ul>
-                <p class="assistant-helper-note">Model download happens on first load, then browser cache speeds up future sessions.</p>
-                <button type="button" class="assistant-launch-button" data-assistant-open>Open Floating Assistant</button>
-            </div>
-        </div>
-    </section>
-
-    <div class="assistant-floating-wrap">
-        <button type="button" class="assistant-launcher" id="assistantLauncher" aria-controls="assistantWidget" aria-expanded="false" aria-label="Open recruiter assistant">
-            <span class="assistant-launcher-icon">AI</span>
-        </button>
-
-        <div class="assistant-widget" id="assistantWidget" hidden>
-            <div class="assistant-widget-header">
-                <div>
-                    <h3>Recruiter Assistant</h3>
-                    <p>Ask about frameworks, delivery impact, AI testing, or hiring fit.</p>
-                </div>
-                <div class="assistant-widget-actions">
-                    <span class="assistant-mode-badge" id="assistantModeBadge">Local model</span>
-                    <button type="button" class="assistant-close" id="assistantClose" aria-label="Close assistant">Close</button>
-                </div>
-            </div>
-
-            <div class="assistant-chat-card assistant-widget-card">
-                <div class="assistant-chat-header">
-                    <div>
-                        <h3>Chat With Recruiter Assistant</h3>
-                        <p>First load downloads a compact Hugging Face embedding model for local semantic search.</p>
-                    </div>
-                    <span class="assistant-status" id="assistantStatus">Loading model...</span>
-                </div>
-
-                <div class="assistant-messages" id="assistantMessages" aria-live="polite">
-                    <article class="assistant-message assistant-message-bot">
-                        <p>I can answer questions about Anik’s QA automation background, AI-driven testing work, Playwright and Selenium depth, desktop automation, domain experience, leadership, and project highlights.</p>
-                    </article>
-                </div>
-
-                <form class="assistant-form" id="assistantForm">
-                    <label class="assistant-label" for="assistantInput">Ask a recruiter-style question</label>
-                    <div class="assistant-input-row">
-                        <input type="text" id="assistantInput" class="assistant-input" placeholder="Example: What experience does he have with Python and CI/CD?" maxlength="220" required>
-                        <button type="submit" class="assistant-send">Ask</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -657,6 +565,5 @@
     </footer>
 
     <script src="scripts.js"></script>
-    <script type="module" src="ai-assistant.js"></script>
 </body>
 </html>
