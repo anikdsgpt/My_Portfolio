@@ -1,16 +1,595 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting to Portfolio</title>
-    <meta http-equiv="refresh" content="0; url=./anik-portfolio/index.html">
-    <script>
-        window.location.replace('./anik-portfolio/index.html');
-    </script>
+    <title>Anik Dasgupta - Senior SDET | QA Automation Engineer | AI-Driven Quality Engineering</title>
+    <link rel="stylesheet" href="anik-portfolio/styles.css">
 </head>
 <body>
-    <p>Redirecting to portfolio...</p>
-    <p>If you are not redirected, <a href="./anik-portfolio/index.html">click here</a>.</p>
+    <!-- Navigation Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container navbar-wrapper">
+                <!-- Logo/Branding -->
+                <div class="nav-branding">
+                    <a href="#home" class="logo-link">
+                        <h1 class="logo">Anik Dasgupta</h1>
+                    </a>
+                </div>
+
+                <!-- Hamburger Menu Button (Mobile) -->
+                <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+
+                <!-- Navigation Links -->
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#workflow" class="nav-link">How I Work</a></li>
+                    <li><a href="#philosophy" class="nav-link">Philosophy</a></li>
+                    <li><a href="#tech-stack" class="nav-link">Tech Stack</a></li>
+                    <li><a href="#why-hire" class="nav-link">Why Hire Me</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="anik-portfolio/resume.html" class="nav-link">Resume</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-layout">
+                <div class="hero-content">
+                    <h1 class="hero-title">Anik Dasgupta</h1>
+                    <p class="hero-subtitle">Senior SDET Building AI-Driven Automation for Web, API, and Desktop Platforms</p>
+                    <p class="hero-introduction">Results-driven QA Automation Engineer with 9 years of experience designing scalable Python-based automation frameworks, modern UI and API test systems, and CI-ready quality workflows across healthcare and finance domains.</p>
+                    <div class="hero-highlights">
+                        <span class="hero-highlight">Web + API + Desktop Automation</span>
+                        <span class="hero-highlight">Playwright + Selenium + Pytest</span>
+                        <span class="hero-highlight">AI-Enhanced Quality Engineering</span>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="cta-button" onclick="scrollToSection('experience')">View Experience</button>
+                        <a href="anik-portfolio/resume.html" class="secondary-button">View Resume</a>
+                    </div>
+                </div>
+
+                <div class="hero-image-wrapper">
+                    <img src="anik-portfolio/images/My_DP.png" alt="Anik Dasgupta profile photo" class="hero-profile-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Professional Snapshot</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Senior QA Automation Engineer with strong depth in Python, Selenium, Playwright, REST API automation, Pytest-BDD, desktop automation, and CI/CD-integrated quality engineering. I focus on building reusable automation systems that reduce regression effort, improve release confidence, and scale across complex enterprise products.</p>
+                    <p><strong>Core Strengths:</strong></p>
+                    <ul class="expertise-list">
+                        <li><strong>Automation-First Delivery:</strong> Python frameworks for Web, API, Desktop, and cross-platform regression aligned to CI pipelines.</li>
+                        <li><strong>Modern Test Engineering:</strong> Selenium, Playwright, Pytest, Postman, and reusable modules for maintainable, high-signal automation.</li>
+                        <li><strong>Domain + Platform Breadth:</strong> Proven experience across healthcare, finance, BPM platforms, and legacy Windows application workflows.</li>
+                    </ul>
+                    <p><strong>Brand Promise:</strong> Build scalable, automation-led quality systems that accelerate releases without sacrificing coverage, security, or reliability.</p>
+                </div>
+                <aside class="about-visual-card">
+                    <img src="anik-portfolio/images/section-quality-automation-blueprint.png?v=20260413" alt="Quality automation blueprint visual" class="about-visual-image">
+                    <div class="about-visual-copy">
+                        <span class="about-visual-kicker">Automation Blueprint</span>
+                        <h3>Framework thinking across web, API, and desktop systems</h3>
+                        <p>The strongest QA systems are designed as connected platforms, not isolated scripts.</p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section id="workflow" class="workflow">
+        <div class="container">
+            <h2 class="section-title">Delivery Framework</h2>
+            <p class="workflow-intro">My delivery model is built around shift-left automation, measurable quality gates, and frameworks that support fast validation across UI, API, and desktop applications.</p>
+
+            <div class="workflow-timeline">
+                <article class="workflow-step">
+                    <div class="workflow-marker">1</div>
+                    <div class="workflow-content">
+                        <h3>Risk and Requirement Mapping</h3>
+                        <p>Break down product requirements, workflows, and technical dependencies to identify high-risk paths early across enterprise web, API, and desktop systems.</p>
+                    </div>
+                </article>
+
+                <article class="workflow-step">
+                    <div class="workflow-marker">2</div>
+                    <div class="workflow-content">
+                        <h3>Automation Strategy Design</h3>
+                        <p>Define automation layers for UI, API, DB, and desktop validations with clear ownership, coverage targets, and CI-ready execution plans.</p>
+                    </div>
+                </article>
+
+                <article class="workflow-step">
+                    <div class="workflow-marker">3</div>
+                    <div class="workflow-content">
+                        <h3>Framework Engineering</h3>
+                        <p>Build reusable Python-based automation frameworks with Selenium, Playwright, Pytest, and desktop tooling for stable regression at scale.</p>
+                    </div>
+                </article>
+
+                <article class="workflow-step">
+                    <div class="workflow-marker">4</div>
+                    <div class="workflow-content">
+                        <h3>API and Cross-System Validation</h3>
+                        <p>Automate REST workflows, database checks, service integrations, and negative scenarios to catch integration failures before release windows tighten.</p>
+                    </div>
+                </article>
+
+                <article class="workflow-step">
+                    <div class="workflow-marker">5</div>
+                    <div class="workflow-content">
+                        <h3>Security and Compliance Checks</h3>
+                        <p>Embed SAST, SCA, and OWASP-oriented validations into quality workflows to surface risky changes, vulnerable dependencies, and security regressions earlier.</p>
+                    </div>
+                </article>
+
+                <article class="workflow-step">
+                    <div class="workflow-marker">6</div>
+                    <div class="workflow-content">
+                        <h3>CI/CD Quality Gates</h3>
+                        <p>Integrate Jenkins-driven regression, reporting, and cross-platform execution so releases are governed by repeatable, automation-backed quality signals.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testing Philosophy Section -->
+    <section id="philosophy" class="philosophy">
+        <div class="container">
+            <h2 class="section-title">Testing Philosophy</h2>
+            <p class="philosophy-intro">The principles that shape how I approach modern SDET and AI-assisted quality engineering.</p>
+
+            <div class="philosophy-grid">
+                <article class="philosophy-point">
+                    <h3>Automation Must Be a Product Capability</h3>
+                    <p>Test automation should be designed like an internal product: reusable, scalable, and valuable across releases instead of a one-off script collection.</p>
+                </article>
+
+                <article class="philosophy-point">
+                    <h3>Coverage Should Follow Risk, Not Habit</h3>
+                    <p>High-value coverage comes from targeting failure-prone flows, integrations, and security-sensitive paths rather than automating low-signal checks blindly.</p>
+                </article>
+
+                <article class="philosophy-point">
+                    <h3>Security Is Part of Test Engineering</h3>
+                    <p>SAST, SCA, and OWASP-driven thinking should live inside quality engineering, not as an afterthought outside automation programs.</p>
+                </article>
+
+                <article class="philosophy-point">
+                    <h3>AI Should Improve Throughput, Not Create Noise</h3>
+                    <p>LLM and NLP-based utilities are most valuable when they reduce analysis effort, improve documentation parsing, and optimize test selection without weakening engineering rigor.</p>
+                </article>
+
+                <article class="philosophy-point">
+                    <h3>Leadership Means Better Quality Decisions</h3>
+                    <p>Mentoring, triage ownership, and risk-based planning matter because strong QA leadership raises the quality of team decisions, not just test execution volume.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech-stack" class="tech-stack">
+        <div class="container">
+            <h2 class="section-title">Core Tech Stack</h2>
+            <p class="tech-intro">Core technologies I use to build, scale, and optimize enterprise QA automation programs.</p>
+
+            <div class="tech-grid">
+                <article class="tech-group">
+                    <h3>Languages</h3>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Java</span>
+                        <span class="tech-badge">SQL</span>
+                    </div>
+                </article>
+
+                <article class="tech-group">
+                    <h3>Automation</h3>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Selenium</span>
+                        <span class="tech-badge">Playwright</span>
+                        <span class="tech-badge">Pytest</span>
+                        <span class="tech-badge">Pytest-BDD</span>
+                        <span class="tech-badge">Appium</span>
+                    </div>
+                </article>
+
+                <article class="tech-group">
+                    <h3>API</h3>
+                    <div class="tech-badges">
+                        <span class="tech-badge">REST API</span>
+                        <span class="tech-badge">Postman</span>
+                        <span class="tech-badge">DB Validation</span>
+                    </div>
+                </article>
+
+                <article class="tech-group">
+                    <h3>Security</h3>
+                    <div class="tech-badges">
+                        <span class="tech-badge">SAST</span>
+                        <span class="tech-badge">SCA</span>
+                        <span class="tech-badge">OWASP</span>
+                    </div>
+                </article>
+
+                <article class="tech-group">
+                    <h3>Tools</h3>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Jenkins</span>
+                        <span class="tech-badge">Git</span>
+                        <span class="tech-badge">Docker</span>
+                        <span class="tech-badge">Bitbucket</span>
+                    </div>
+                </article>
+
+                <article class="tech-group">
+                    <h3>Desktop + AI</h3>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Pywinauto</span>
+                        <span class="tech-badge">Pyautogui</span>
+                        <span class="tech-badge">AutoIT</span>
+                        <span class="tech-badge">LLM</span>
+                        <span class="tech-badge">NLP</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Hire Me Section -->
+    <section id="why-hire" class="why-hire">
+        <div class="container">
+            <h2 class="section-title">Why Hire Me</h2>
+            <p class="why-hire-intro">I combine hands-on framework engineering, automation strategy, and AI-enabled quality thinking for product teams that expect measurable delivery impact.</p>
+
+            <div class="why-hire-grid">
+                <article class="why-hire-point">
+                    <h3>9 Years of Automation Delivery</h3>
+                    <p>Strong track record across enterprise web, API, mobile, and desktop quality engineering in healthcare and finance ecosystems.</p>
+                </article>
+
+                <article class="why-hire-point">
+                    <h3>Automation + Security + AI in One Profile</h3>
+                    <p>I blend Selenium, Playwright, Pytest, SAST/SCA practices, and AI-assisted test optimization into one delivery-ready engineering skill set.</p>
+                </article>
+
+                <article class="why-hire-point">
+                    <h3>Cross-Platform Test Depth</h3>
+                    <p>Hands-on automation experience across browser, API, database, and legacy Windows desktop workflows in the same release programs.</p>
+                </article>
+
+                <article class="why-hire-point">
+                    <h3>Framework Ownership Mindset</h3>
+                    <p>I design maintainable frameworks and reusable modules that help teams scale coverage without creating brittle automation debt.</p>
+                </article>
+
+                <article class="why-hire-point">
+                    <h3>Leadership Through Enablement</h3>
+                    <p>I support teams through mentoring, triage leadership, test planning, and quality strategy that improves team-level execution maturity.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Specializations</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3 class="skill-category">Automation</h3>
+                    <p><strong>Tools:</strong> Selenium, Playwright, Pytest, Pytest-BDD, Appium, Allure<br><strong>Applied In:</strong> Web UI, regression, cross-browser, and quality gates for enterprise releases<br><strong>Outcome:</strong> Broader automation coverage with maintainable, CI-ready execution.</p>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-category">Languages and Framework Design</h3>
+                    <p><strong>Tools:</strong> Python, Java, SQL, Hybrid Frameworks, BDD, CI-ready architecture<br><strong>Applied In:</strong> Reusable test modules, maintainable framework design, and fast onboarding for QA contributors<br><strong>Outcome:</strong> Lower maintenance overhead and stronger engineering consistency.</p>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-category">API and Database Testing</h3>
+                    <p><strong>Tools:</strong> REST API automation, Postman, DB validation, service-level assertions<br><strong>Applied In:</strong> API regression, workflow validation, and backend checks for BPM, healthcare, and finance products<br><strong>Outcome:</strong> Earlier identification of integration and contract defects.</p>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-category">Desktop Automation</h3>
+                    <p><strong>Tools:</strong> Pywinauto, Pyautogui, AutoIT<br><strong>Applied In:</strong> Legacy Windows application validation, secure popup handling, and hybrid UI workflows<br><strong>Outcome:</strong> Extended automation reach into systems usually left for manual-only validation.</p>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-category">Security and DevOps</h3>
+                    <p><strong>Tools:</strong> Jenkins, Git, Bitbucket, Docker, SAST, SCA, OWASP practices<br><strong>Applied In:</strong> CI/CD integration, shift-left quality, and secure validation in release pipelines<br><strong>Outcome:</strong> Faster feedback loops and stronger delivery confidence.</p>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-category">AI-Driven Testing Initiatives</h3>
+                    <p><strong>Tools:</strong> LLM-assisted utilities, NLP-driven document parsing, test optimization ideas<br><strong>Applied In:</strong> Documentation interpretation, automation acceleration, and targeted test improvement workflows<br><strong>Outcome:</strong> Reduced manual analysis effort and stronger test prioritization for fast-moving releases.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Selected Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="anik-portfolio/images/project-ai-testing-utilities.png?v=20260413" alt="AI-driven testing utilities concept illustration" class="project-image-img">
+                    </div>
+                    <div class="project-info">
+                        <h3>AI-Driven Testing Utilities</h3>
+                        <p><strong>Impact:</strong> Improved documentation interpretation and test optimization workflows for teams navigating large product and legacy system surfaces.</p>
+                        <p><strong>How:</strong> Contributed to AI-enhanced utilities for parsing documents, improving test targeting, and reducing manual QA analysis effort.</p>
+                        <div class="project-tags">
+                            <span class="tag">AI Testing</span>
+                            <span class="tag">LLM</span>
+                            <span class="tag">NLP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="anik-portfolio/images/project-unified-automation-framework.png?v=20260413" alt="Unified web API and desktop automation framework diagram" class="project-image-img">
+                    </div>
+                    <div class="project-info">
+                        <h3>Unified Web, API, and Desktop Automation Framework</h3>
+                        <p><strong>Impact:</strong> Increased automation depth across modern web products and legacy Windows applications without splitting coverage across disconnected toolchains.</p>
+                        <p><strong>How:</strong> Built Pytest-based reusable modules using Selenium, Playwright, Pywinauto, and Pyautogui with Jenkins integration for cross-platform execution.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Selenium</span>
+                            <span class="tag">Playwright</span>
+                            <span class="tag">Desktop</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="anik-portfolio/images/project-bpm-regression-modernization.png?v=20260413" alt="BPM case management regression modernization visual" class="project-image-img">
+                    </div>
+                    <div class="project-info">
+                        <h3>BPM and Case Management Regression Modernization</h3>
+                        <p><strong>Impact:</strong> Strengthened regression reliability for BPM, Case, and Decision products by expanding automation coverage across browser, API, and database validations.</p>
+                        <p><strong>How:</strong> Automated regression suites, improved test data strategies, and integrated CI/CD execution for faster validation cycles.</p>
+                        <div class="project-tags">
+                            <span class="tag">BPM</span>
+                            <span class="tag">API</span>
+                            <span class="tag">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="anik-portfolio/images/project-banking-hybrid-ui-automation.png?v=20260413" alt="Banking hybrid UI automation with browser and desktop flows" class="project-image-img">
+                    </div>
+                    <div class="project-info">
+                        <h3>Banking Hybrid UI Automation</h3>
+                        <p><strong>Impact:</strong> Expanded automation for lending and banking workflows that depended on browser interactions plus system dialogs and Windows popups.</p>
+                        <p><strong>How:</strong> Built hybrid automation using Selenium Grid, TestNG, Cucumber, and AutoIT to stabilize secure login and multi-step business flows.</p>
+                        <div class="project-tags">
+                            <span class="tag">Finance</span>
+                            <span class="tag">BDD</span>
+                            <span class="tag">Selenium Grid</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-spotlight">
+                <img src="anik-portfolio/images/project-bpm-regression-modernization.png?v=20260413" alt="Enterprise regression modernization visual" class="experience-spotlight-image">
+                <div class="experience-spotlight-copy">
+                    <span class="experience-spotlight-kicker">Enterprise Delivery</span>
+                    <h3>Automation built for release confidence across complex product ecosystems</h3>
+                    <p>From healthcare platforms to banking workflows, the focus stays the same: scalable validation, stronger quality gates, and faster release decisions.</p>
+                </div>
+            </div>
+            <div class="experience-container">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <h3>Test Engineer 3</h3>
+                        <p class="company">Hyland Software</p>
+                        <p class="duration">Jun 2022 - Present</p>
+                    </div>
+                    <div class="experience-content">
+                        <p><strong>Achievements:</strong></p>
+                        <ul class="achievement-list">
+                            <li>Designed a CI-integrated automation framework covering web, API, and legacy Windows desktop applications, improving consistency across mixed-technology release validation.</li>
+                            <li>Led UI and API automation using Selenium, Playwright, Pytest, and Postman, accelerating regression execution and improving repeatability for enterprise product teams.</li>
+                            <li>Extended automation into legacy Windows workflows using Pywinauto and Pyautogui integrated with Pytest, reducing manual validation dependency for desktop-heavy flows.</li>
+                            <li>Embedded SAST and SCA checks into quality workflows, strengthening release readiness and surfacing security risks earlier in the delivery cycle.</li>
+                            <li>Mentored junior QAs, led defect triage and test planning, and contributed to AI-enhanced utilities for automation optimization and documentation parsing.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <h3>Quality Assurance Engineer</h3>
+                        <p class="company">OpenText Technologies</p>
+                        <p class="duration">Mar 2021 - Jun 2022</p>
+                    </div>
+                    <div class="experience-content">
+                        <p><strong>Achievements:</strong></p>
+                        <ul class="achievement-list">
+                            <li>Automated regression suites for BPM, Case, and Decision products, increasing dependable coverage across high-value business workflows.</li>
+                            <li>Executed cross-browser, API, and database validation strategies that improved release quality for integration-heavy enterprise platforms.</li>
+                            <li>Supported CI/CD integration and test data planning, reducing execution friction and improving consistency across release cycles.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <h3>Associate</h3>
+                        <p class="company">Cognizant Technology Solutions</p>
+                        <p class="duration">Dec 2016 - Mar 2021</p>
+                    </div>
+                    <div class="experience-content">
+                        <p><strong>Achievements:</strong></p>
+                        <ul class="achievement-list">
+                            <li>Built and maintained multi-platform automation suites using Selenium Grid for banking and lending applications, improving cross-browser and cross-device validation scale.</li>
+                            <li>Enhanced BDD automation frameworks with TestNG and Cucumber, making test flows more readable for cross-functional teams and faster to extend.</li>
+                            <li>Automated Windows desktop operations using AutoIT integrated with Selenium for hybrid UI workflows that combined browser and system-level interactions.</li>
+                            <li>Developed scripts to handle dialogs, popups, and secure login flows, reducing flaky automation around system-driven authentication steps.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="experience">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="experience-container">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <h3>Post Graduate Program in Artificial Intelligence and Machine Learning</h3>
+                        <p class="company">Great Lakes Executive Learning and The University of Texas at Austin</p>
+                        <p class="duration">Grade: Excellent</p>
+                    </div>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <h3>B.Tech in Electrical Engineering</h3>
+                        <p class="company">MAKAUT</p>
+                        <p class="duration">DGPA: 8.97</p>
+                    </div>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <h3>Academic Foundation</h3>
+                        <p class="company">Higher Secondary - Khalsa Model Senior Secondary School | Secondary - Kalyani Public School</p>
+                        <p class="duration">71.6% | CGPA 9.2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects">
+        <div class="container">
+            <h2 class="section-title">Certifications and Awards</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Programming, Data Structures and Algorithms Using Python</h3>
+                        <p><strong>Issuer:</strong> NPTEL</p>
+                        <p><strong>Credential ID:</strong> NPTEL23CS95S3601090610027363</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Cognizant Pillar of the Month</h3>
+                        <p><strong>Recognition:</strong> Awarded in March 2019 for delivery impact and contribution quality.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>JIS Samman 2021</h3>
+                        <p><strong>Recognition:</strong> Received for academic excellence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="contact-intro">Open to Senior SDET, QA Automation, and AI-driven Quality Engineering roles focused on automation-first delivery, modern test platforms, and release reliability.</p>
+            
+            <div class="contact-wrapper">
+                <!-- Direct Contact Info -->
+                <div class="contact-info">
+                    <img src="anik-portfolio/images/section-contact-network-watermark.png?v=20260413" alt="" class="contact-watermark" aria-hidden="true">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-item">
+                        <strong>ðŸ“§ Email:</strong>
+                        <a href="mailto:anikdsgpt@outlook.com" class="contact-link">anikdsgpt@outlook.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>ðŸ“ž Phone:</strong>
+                        <a href="tel:+918902553975" class="contact-link">+91 89025 53975</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>ðŸ™ GitHub:</strong>
+                        <a href="https://github.com/anikdsgpt" target="_blank" rel="noopener noreferrer" class="contact-link">github.com/anikdsgpt</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>ðŸ“ Location:</strong>
+                        <span class="contact-link">34 B.B Street, PIN - 712232, India</span>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://github.com/anikdsgpt" target="_blank" rel="noopener noreferrer" class="social-link">GitHub</a>
+                        <a href="mailto:anikdsgpt@outlook.com" class="social-link">Email</a>
+                        <a href="tel:+918902553975" class="social-link">Call</a>
+                        <a href="anik-portfolio/resume.html" class="social-link">Resume</a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <form class="contact-form" id="contactForm">
+                    <h3>Send a Message</h3>
+                    <div class="form-group">
+                        <input type="text" id="name" name="full_name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Your Message" rows="6" minlength="10" required></textarea>
+                    </div>
+                    <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+                    <button type="submit" class="cta-button form-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Anik Dasgupta. All rights reserved.</p>
+                <p class="footer-tagline">Senior SDET | QA Automation | AI-Driven Testing | Web, API, and Desktop Quality Engineering</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="anik-portfolio/scripts.js"></script>
 </body>
 </html>
+
